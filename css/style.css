@@ -76,6 +76,11 @@ main {
     color: white;
 }
 
+.bg-red {
+    background-color: #dc143c;
+    color: white;
+}
+
 /* FOOTER */
 footer {
     font-size: 0.8rem;

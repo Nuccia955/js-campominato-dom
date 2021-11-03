@@ -10,8 +10,8 @@ btnPlay.addEventListener('click', function() {
     let gridNumberOfSquares;
     let gridRowCells;
     switch (levelSelection) {
-    case '1': gridNumberOfSquares = 100;
-              gridRowCells = 10;
+    case '1': gridNumberOfSquares = 16;
+              gridRowCells = 4;
               break;
     case '2': gridNumberOfSquares = 81;
               gridRowCells = 9;
@@ -21,9 +21,11 @@ btnPlay.addEventListener('click', function() {
     }
 
     //8. create a 16 unique random numbers list 
-    const bombList = genUniqueRandNumbersList( 16, 1, gridNumberOfSquares);
-    console.log(bombList);
-
+    const bombList = genUniqueRandNumbersList( 4, 1, gridNumberOfSquares);
+    console.log('bombList', bombList);
+    const attempts = [];
+    const maxAttempts = gridNumberOfSquares - bombList.length;
+    console.log('maxAttempts', maxAttempts);
 
     //2.2 ...and generate grid with btn-Play
     const grid = document.createElement('div');
@@ -35,8 +37,21 @@ btnPlay.addEventListener('click', function() {
         grid.append(square);
         //5. on squares add click event for changing background-color
         square.addEventListener('click', () => {
-            square.classList.add('bg-blue');
-        })
+            // game processing
+            const squareValue = parseInt(square.innerHTML);
+            console.log('squareValue', squareValue);
+            if (bombList.includes(squareValue)) {
+                square.classList.add('bg-red');
+                console.log('you lose!'); // function endGame
+            } else if (!attempts.includes(squareValue)) {
+                square.classList.add('bg-blue');
+                attempts.push(squareValue);
+                console.log('attempts', attempts);
+                if (attempts.length === maxAttempts) {
+                    console.log('hai vinto!'); // function endGame
+                }
+            }
+        });
     }
 
     mainContent.append(grid);
@@ -52,9 +67,7 @@ function generateSquare(number, cells) {
     square.classList.add('square');
     square.style.width = `calc(100% / ${cells})`;
     square.style.height = `calc(100% / ${cells})`;
-    const squareNumber = document.createElement('span');
-    squareNumber.append(`${number}`);
-    square.append(squareNumber);
+    square.append(number);
     return square;
 }
 
@@ -74,6 +87,9 @@ function genUniqueRandNumbersList (target, min, max) {
     }
     return list;
 }
+
+//9. define function to decide if you clicked a bomb or a safe number
+
 
 
 
