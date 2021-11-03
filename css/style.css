@@ -55,10 +55,11 @@ main {
     align-items: center;
     justify-content: center;
     overflow: auto;
+    padding: 50px 0;
 }
 
 .grid-wrap {
-    margin: 90px auto;
+    margin: 0 auto;
     width: 500px;
     height: 500px;
     display: flex;
