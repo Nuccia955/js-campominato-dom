@@ -48,7 +48,7 @@ btnPlay.addEventListener('click', function() {
                 attempts.push(squareValue);
                 console.log('attempts', attempts);
                 if (attempts.length === maxAttempts) {
-                    console.log('hai vinto!'); // function endGame
+                    endGame (gridNumberOfSquares, bombList, attempts, maxAttempts) // function endGame
                 }
             }
         });
@@ -106,16 +106,18 @@ function endGame (numberOfSquares, list, attempts, maxAttempts) {
     }
 
     //2. add message (if win/loose) below grid
-    let message = `Hai vinto! Hai indovinato ${maxAttempts} numeri! Clicca 'Play in alto a destra per giocare di nuovo!`;
+    let message = `Hai vinto! Hai indovinato ${maxAttempts} numeri! Clicca 'Play' in alto a destra per giocare di nuovo!`;
     if (attempts.length < maxAttempts) {
         message = `Oh no! Hai perso! Hai indovinato ${attempts.length} numeri su ${maxAttempts}`;
     } 
     const messageNode = document.createElement('h2');
     messageNode.append(message);
     document.querySelector('.main-section').append(messageNode);
+    
+    //3. if you loose or guess all numbers you cannot continue the game
+    document.querySelector('.grid-wrap').classList.add('end-game');
 }
 
-    //   if you loose you cannot continue the game
 
 
 
