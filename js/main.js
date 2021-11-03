@@ -91,5 +91,13 @@ function genUniqueRandNumbersList (target, min, max) {
 //9. define function to decide if you clicked a bomb or a safe number
 
 
+//10. define function for the end of game
+function endGame () {
+    //1. reveal all the bombs
+    //   - get all bomb squares and add bg-red
+    //2. add message (if win/loose) below grid
+    //   if you loose you cannot continue the game
+}
+
 
 
