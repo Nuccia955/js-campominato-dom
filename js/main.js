@@ -41,7 +41,7 @@ btnPlay.addEventListener('click', function() {
             const squareValue = parseInt(square.innerHTML);
             console.log('squareValue', squareValue);
             if (bombList.includes(squareValue)) {
-                square.classList.add('bg-red');
+                endGame (gridNumberOfSquares, bombList);
                 console.log('you lose!'); // function endGame
             } else if (!attempts.includes(squareValue)) {
                 square.classList.add('bg-blue');
@@ -92,12 +92,23 @@ function genUniqueRandNumbersList (target, min, max) {
 
 
 //10. define function for the end of game
-function endGame () {
+function endGame (numberOfSquares, list) {
     //1. reveal all the bombs
+    //   refs
+    const squares = document.querySelectorAll('.square');
     //   - get all bomb squares and add bg-red
+    for (i = 0; i < numberOfSquares; i++) {
+        const square = squares[i];
+        const squareValue = parseInt(square.innerHTML);
+        if (list.includes(squareValue)) {
+            square.classList.add('bg-red');
+        }
+    }
+}
+
     //2. add message (if win/loose) below grid
     //   if you loose you cannot continue the game
-}
+
 
 
 
