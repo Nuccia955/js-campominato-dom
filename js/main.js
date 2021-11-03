@@ -20,13 +20,18 @@ btnPlay.addEventListener('click', function() {
               gridRowCells = 7;
     }
 
+    //8. create a 16 unique random numbers list 
+    const bombList = genUniqueRandNumbersList( 16, 1, gridNumberOfSquares);
+    console.log(bombList);
+
+
     //2.2 ...and generate grid with btn-Play
-    /* const grid = document.createElement('div');
+    const grid = document.createElement('div');
     grid.classList.add('grid-wrap');
 
     for (let i = 1; i <= gridNumberOfSquares; i++) {
         //4. call function to create a square
-        const square = addSquare(i, gridRowCells);
+        const square = generateSquare(i, gridRowCells);
         grid.append(square);
         //5. on squares add click event for changing background-color
         square.addEventListener('click', () => {
@@ -34,10 +39,7 @@ btnPlay.addEventListener('click', function() {
         })
     }
 
-    mainContent.append(grid); */
-
-    //6- call function to create a grid
-    mainContent.append(generateGrid(gridNumberOfSquares, gridRowCells));
+    mainContent.append(grid);
 });
 
 
@@ -56,21 +58,22 @@ function generateSquare(number, cells) {
     return square;
 }
 
-//3.1 define function to create a grid
-function generateGrid (numberOfSquares, gridRowCells) {
-    const grid = document.createElement('div');
-    grid.classList.add('grid-wrap');
-
-    for (let i = 1; i <= numberOfSquares; i++) {
-        //4. call function to create a square
-        const square = generateSquare(i, gridRowCells);
-        grid.append(square);
-        //5. on squares add click event for changing background-color
-        square.addEventListener('click', () => {
-            square.classList.add('bg-blue');
-        })
-    }
-    return grid;
+//6. define function to generate random number 
+function generateRandNumber (min, max) {
+    return Math.floor( Math.random () * (max - min + 1) + min );
 }
+
+//7. define function to generate a list of unique random numbers
+function genUniqueRandNumbersList (target, min, max) {
+    let list = [];
+    while ( list.length < target) {
+        const randNum = generateRandNumber (min, max);
+        if ( !list.includes(randNum)) {
+            list.push(randNum);
+        }
+    }
+    return list;
+}
+
 
 
