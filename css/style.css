@@ -49,8 +49,10 @@ header button {
 
 /* MAIN */
 main {
+    flex-direction: column;
     flex-grow: 1;
     background-color: aquamarine;
+    align-items: center;
     justify-content: center;
     overflow: auto;
 }
